@@ -7,7 +7,7 @@
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/MapGeneratorDef[@Name="ShashlichnikUndergroundBase"]/genSteps</xpath>
 		<value>
-			<li>DeepAndDeeperPatch_CaveAnimals</li>
+			<li>DeepAndDeeperPatch_BiomesCaverns_CaveAnimals</li>
 		</value>
 	</Operation>
 
@@ -18,7 +18,7 @@
 		</value>
 	</Operation>
 
-	
+
 	<!-- Level 1 -->
 	<Operation Class="PatchOperationAdd">
 		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUnderground"]</xpath>

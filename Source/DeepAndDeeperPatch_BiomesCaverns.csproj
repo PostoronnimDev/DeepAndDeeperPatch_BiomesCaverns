@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="GenStep_CaveAnimals.cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="Patch_GenStep_WayDown_TryGetNextInterestPosition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

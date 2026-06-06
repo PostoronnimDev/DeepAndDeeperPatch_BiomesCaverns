@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace DeepAndDeeperPatch_BiomesCaverns
 {
     public class GenStep_CaveAnimals : GenStep
     {
-        public int minCount;
-        public int maxCount;
+        public int minCount = -1;
+        public int maxCount = -1;
         public bool allowFoggedCells = false;
 
         public override int SeedPart => 9343982;
 
         public override void Generate(Map map, GenStepParams parms)
         {
-            int cellCount = map.cellIndices.SizeX * map.cellIndices.SizeZ;
-            if (minCount == null) minCount = cellCount / 1000;
-            if (maxCount == null) maxCount = Math.Max(minCount * 2, 1);
+            int cellCount = map.Size.x * map.Size.z;
+            if (minCount < 0)
+            {
+                Log.Message("[DeepAndDeeperPatch - Biomes!Caverns] Assigning default animal minCount");
+                minCount = cellCount / 1000;
+            }
+
+            if (maxCount < 0 || maxCount < minCount)
+            {
+                Log.Message("[DeepAndDeeperPatch - Biomes!Caverns] Assigning default animal maxCount");
+                maxCount = Math.Max(minCount * 2, 1);
+            }
+
             if (map.Biome == null)
             {
                 Log.Warning("[DeepAndDeeperPatch - Biomes!Caverns] Map has no biome.");
@@ -35,23 +46,32 @@ namespace DeepAndDeeperPatch_BiomesCaverns
 
             for (int i = 0; i < count; i++)
             {
-                PawnKindDef kind = ChooseAnimalFromBiome(map);
+                PawnKindDef animalKind = ChooseAnimalFromBiome(map);
 
-                if (kind == null)
+                if (animalKind == null)
                 {
                     Log.Warning("[DeepAndDeeperPatch - Biomes!Caverns] Could not choose animal from biome " + map.Biome.defName + ".");
                     return;
                 }
 
-                if (!TryFindSpawnCell(map, out IntVec3 cell))
+                if (!TryFindSpawnCell(map, out IntVec3 loc))
                 {
                     Log.Warning("[DeepAndDeeperPatch - Biomes!Caverns] Could not find valid cave animal spawn cell.");
                     return;
                 }
 
-                Pawn pawn = PawnGenerator.GeneratePawn(kind, null);
-                GenSpawn.Spawn(pawn, cell, map);
-                spawned++;
+                int randomInRange = animalKind.wildGroupSize.RandomInRange;
+
+                int radius = Mathf.CeilToInt(Mathf.Sqrt(animalKind.wildGroupSize.max));
+                IntVec3 intVec = CellFinder.RandomClosewalkCellNear(loc, map, radius);
+                for (int j = 0; j < randomInRange; j++)
+                {
+                    Pawn pawn = PawnGenerator.GeneratePawn(animalKind, null);
+                    GenSpawn.Spawn(pawn, loc, map);
+                    spawned++;
+                }
+
+                i += randomInRange - 1;
             }
 
             Log.Message("[DeepAndDeeperPatch - Biomes!Caverns] Spawned " + spawned + " cave animals from biome " + map.Biome.defName + ".");

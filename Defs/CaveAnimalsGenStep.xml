@@ -1,8 +1,8 @@
 <Defs>
 	<GenStepDef>
-		<defName>DeepAndDeeperPatch_CaveAnimals</defName>
+		<defName>DeepAndDeeperPatch_BiomesCaverns_CaveAnimals</defName>
 		<order>500</order>
-		<genStep Class="DeepAndDeeperPatch.GenStep_CaveAnimals">
+		<genStep Class="DeepAndDeeperPatch_BiomesCaverns.GenStep_CaveAnimals">
 			<!--<minCount>10</minCount>
 			<maxCount>20</maxCount>-->
 		</genStep>

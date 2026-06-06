@@ -26,7 +26,14 @@ namespace DeepAndDeeperPatch_BiomesCaverns
 
             harmony.PatchAll();
 
-            Log.Message("[CaveAnimals] Startup finished.");
+            var myOriginalMethods = harmony.GetPatchedMethods();
+            foreach (var method in myOriginalMethods)
+            {
+                Log.Message("[DeepAndDeeperPatch - Biomes!Caverns] " +
+                method.Name + " is patched.");
+            }
+
+            Log.Message("[DeepAndDeeperPatch - Biomes!Caverns] Startup finished.");
         }
 
         public Mod(ModContentPack content) : base(content) { }
@@ -46,7 +53,7 @@ namespace DeepAndDeeperPatch_BiomesCaverns
             var infoAfter = Harmony.GetPatchInfo(original);
             int after = infoAfter?.Prefixes?.Count(p => p.owner == deepAndDeeperHarmonyId) ?? 0;
 
-            Log.Message($"[CaveAnimals] {label}: DeepAndDeeper temperature prefixes before={before}, after={after}.");
+            Log.Message($"[DeepAndDeeperPatch - Biomes!Caverns] {label}: DeepAndDeeper temperature prefixes before={before}, after={after}.");
         }
     }
 }
