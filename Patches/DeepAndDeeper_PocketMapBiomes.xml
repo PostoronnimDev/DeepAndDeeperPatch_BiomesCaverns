@@ -11,6 +11,13 @@
 		</value>
 	</Operation>
 
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[@Name="ShashlichnikUndergroundBase"]/genSteps</xpath>
+		<value>
+			<li>BMT_ScatterStalagmiteGenerator</li>
+		</value>
+	</Operation>
+
 	<Operation Class="PatchOperationReplace">
 		<xpath>/Defs/GenStepDef[defName="ShashlichnikUnderground_Caves"]/genStep/branchChance</xpath>
 		<value>
@@ -51,6 +58,13 @@
 				<biome>BMT_CrystalCaverns</biome>
 				<temperature>25</temperature>
 			</pocketMapProperties>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUndergroundLvl3"]/genSteps</xpath>
+		<value>
+			<li>BMT_CrystalsGenerator</li>
 		</value>
 	</Operation>
 
