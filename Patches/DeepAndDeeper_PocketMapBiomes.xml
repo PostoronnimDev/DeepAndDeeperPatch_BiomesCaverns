@@ -1,0 +1,68 @@
+<Patch>
+	<!-- Base level -->
+	<Operation Class="PatchOperationRemove">
+		<xpath>/Defs/MapGeneratorDef[@Name="ShashlichnikUndergroundBase"]/pocketMapProperties</xpath>
+	</Operation>
+
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[@Name="ShashlichnikUndergroundBase"]/genSteps</xpath>
+		<value>
+			<li>DeepAndDeeperPatch_CaveAnimals</li>
+		</value>
+	</Operation>
+
+	<Operation Class="PatchOperationReplace">
+		<xpath>/Defs/GenStepDef[defName="ShashlichnikUnderground_Caves"]/genStep/branchChance</xpath>
+		<value>
+			<branchChance>0.05</branchChance>
+		</value>
+	</Operation>
+
+	
+	<!-- Level 1 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUnderground"]</xpath>
+		<value>
+			<pocketMapProperties>
+				<biome>ShashlichnikUnderground</biome>
+				<temperature>15</temperature>
+			</pocketMapProperties>
+		</value>
+	</Operation>
+
+
+	<!-- Level 2 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUndergroundLvl2"]</xpath>
+		<value>
+			<pocketMapProperties>
+				<biome>BMT_FungalForest</biome>
+				<temperature>20</temperature>
+			</pocketMapProperties>
+		</value>
+	</Operation>
+
+
+	<!-- Level 3 -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUndergroundLvl3"]</xpath>
+		<value>
+			<pocketMapProperties>
+				<biome>BMT_CrystalCaverns</biome>
+				<temperature>25</temperature>
+			</pocketMapProperties>
+		</value>
+	</Operation>
+
+
+	<!-- Level 4 and deeper -->
+	<Operation Class="PatchOperationAdd">
+		<xpath>/Defs/MapGeneratorDef[defName="ShashlichnikUndergroundLvl4"]</xpath>
+		<value>
+			<pocketMapProperties>
+				<biome>BMT_EarthenDepths</biome>
+				<temperature>55</temperature>
+			</pocketMapProperties>
+		</value>
+	</Operation>
+</Patch>
